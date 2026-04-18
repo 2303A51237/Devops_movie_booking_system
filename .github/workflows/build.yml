@@ -34,9 +34,9 @@ jobs:
         working-directory: backend
         run: npm test
 
-      - name: Install Frontend Dependencies
+      - name: Install Frontend Dependencies (npm install)
         working-directory: frontend
-        run: npm install --no-audit --no-fund
+        run: npm install --no-audit --no-fund --legacy-peer-deps
 
       - name: Build React App
         working-directory: frontend
