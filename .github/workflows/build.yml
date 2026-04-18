@@ -17,6 +17,11 @@ jobs:
       - name: Show repository structure
         run: ls -la
 
+      - name: Debug workflow version
+        run: |
+          echo "Workflow from commit: $GITHUB_SHA"
+          sed -n '1,120p' .github/workflows/build.yml
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -26,9 +31,9 @@ jobs:
             backend/package-lock.json
             frontend/package-lock.json
 
-      - name: Install Backend Dependencies
+      - name: Install Backend Dependencies (npm install)
         working-directory: backend
-        run: npm ci
+        run: npm install --no-audit --no-fund --legacy-peer-deps
 
       - name: Run Backend Tests
         working-directory: backend
